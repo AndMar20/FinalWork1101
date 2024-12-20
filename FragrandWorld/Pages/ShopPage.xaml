@@ -1,0 +1,93 @@
+﻿<Page x:Class="App.Pages.ShopPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Loaded="Page_Loaded">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--ШАПКА-->
+        <Border Background="#FFCC99" Margin="4">
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="40"/>
+                </Grid.ColumnDefinitions>
+                <Image Source="C:\Temp\ИСПП-21\МДК.11.01\DataBaseLibrary\App\Images\logo.png"/>
+                <StackPanel Orientation="Horizontal" Grid.Column="2">
+                    <Image  Source="C:\Temp\ИСПП-21\МДК.11.01\DataBaseLibrary\App\Images\user.png" Margin="0,6,0,6" />
+                    <Label VerticalAlignment="Center" x:Name="UserFullnameLabel" Content="Гость" FontSize="15"/>
+                </StackPanel>
+                <Image x:Name="ExitImage" Grid.Column="4" Source="C:\Temp\ИСПП-21\МДК.11.01\DataBaseLibrary\App\Images\exit.png" Height="20" DockPanel.Dock="Right" MouseDown="ExitImage_MouseDown"  Style="{StaticResource HoverImage}"/>
+            </Grid>
+        </Border>
+
+        <!--ПОИСК И ФИЛЬТРАЦИЯ-->
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <!--ПОИСК-->
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="140"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Content="Поиск: " Grid.Column="0"/>
+                <TextBox x:Name="SearchTextBox" Grid.Column="1" VerticalContentAlignment="Center"/>
+                <Label x:Name="countLabel" Content="Показано 0 из 0" Grid.Column="2" />
+            </Grid>
+
+            <!--ФИЛЬТРАЦИЯ-->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <WrapPanel Grid.Column="2" HorizontalAlignment="Right">
+                    <Label Content="Фильтр по Цене:"/>
+                    <WrapPanel>
+                        <Label Content="От"/>
+                        <TextBox x:Name="FromTextBox" Width="50" Margin="0 5 0 5"/>
+
+                        <Label Content="До"/>
+                        <TextBox x:Name="ToTextBox" Width="50" Margin="0 5 0 5"/>
+                        <Label Content=" Руб."/>
+                    </WrapPanel>
+                </WrapPanel>
+
+                <ComboBox x:Name="SortComboBox" SelectedIndex="0" Width="150"  Margin="5">
+                    <ComboBoxItem Content="По возрастанию"/>
+                    <ComboBoxItem Content="По убыванию"/>
+                </ComboBox>
+
+                <ComboBox x:Name="ManufacturerComboBox" SelectedIndex="0" SelectedValuePath="1" Width="150"  Margin="5" Grid.Column="1">
+                    <ComboBoxItem Content="Все производители"/>
+                </ComboBox>
+            </Grid>
+        </Grid>
+
+        <!--ТОВАРЫ-->
+        <ScrollViewer Grid.Row="2">
+            <StackPanel x:Name="MainStackPanel">
+                <!-- Сюда генерируются товары-->
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>
